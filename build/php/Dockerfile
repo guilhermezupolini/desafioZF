@@ -15,10 +15,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 
-#xdebug
-RUN pecl install xdebug-2.5.4
-RUN docker-php-ext-enable xdebug
-
 # composer
 RUN curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer
@@ -36,9 +32,6 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # bower
 RUN npm install --global bower
-
-# config xdebug
-COPY build/php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 EXPOSE 9000
 
