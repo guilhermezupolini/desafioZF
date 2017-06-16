@@ -6,7 +6,54 @@
  * Time: 10:25
  */
 
+echo $this->headTitle($this->form->getName());
+$exemplo = $this->exemplo;
+$form = $this->form;
+$form->prepare();
+//echo "<pre>";var_dump($this->form);
 ?>
 
-<p>Olá, sou a action index.</p>
-<?php echo $this->exemplo?>
+
+<!--<div class="col-xs-12">-->
+
+    <fieldset>
+        <legend><?php echo $form->getName() ?></legend>
+
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="row">
+            <div class="form-group col-md-5 col-xs-5">
+                <?php echo $this->formLabel($form->get("nome")) ?>
+                <?php echo $this->formInput($form->get("nome")) ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-5 col-xs-5">
+                <?php echo $this->formLabel($form->get("sigla")) ?>
+                <?php echo $this->formInput($form->get("sigla")) ?>
+            </div>
+        </div>
+
+        <div class="pull-left">
+            <button type="button" class="btn btn-default" id="btnCancelar">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="btnSalvar">Salvar</button>
+        </div>
+
+        <?php echo $this->form()->closeTag(); ?>
+    </fieldset>
+
+<!--</div>-->
+
+<script>
+    
+    $(document).ready(function () {
+        $('#btnSalvar').on('click', function () {
+
+        });
+
+        $('#btnCancelar').on('click', function () {
+            window.location.assign('/');
+        })
+    })
+    
+</script>
