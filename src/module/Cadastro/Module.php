@@ -24,7 +24,7 @@ class Module{
 
     public function getAutoloaderConfig(){
         return array(
-          'Zend\Loader\StandarAutoloader' => array(
+          'Zend\Loader\StandardAutoloader' => array(
               'namespace' => array(
                   __NAMESPACE__ => __DIR__ .  '/src/' . __NAMESPACE__,
               ),

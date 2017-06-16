@@ -2,7 +2,7 @@
 return array(
     'modules' => array(
         'Application',
-        'Cadastro', //Linha adicionada para ativar o módulo
+        'Cadastro'
     ),
 
     'module_listener_options' => array(
