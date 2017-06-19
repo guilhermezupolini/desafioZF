@@ -31,8 +31,10 @@ services:
     image: andreluizs/php:5.6-fpm
     container_name: php
     build:
-        context: .
-        dockerfile: build/php/Dockerfile
+      context: .
+      dockerfile: build/php/Dockerfile
+    environment: 
+      XDEBUG_CONFIG: remote_host=${REMOTE_IP}
     volumes:
       - ./src/:/usr/share/nginx/html/
   
