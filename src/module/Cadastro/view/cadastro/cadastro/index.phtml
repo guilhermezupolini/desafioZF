@@ -7,30 +7,40 @@
  */
 
 echo $this->headTitle($this->form->getName());
-$exemplo = $this->exemplo;
 $form = $this->form;
-$form->prepare();
+//$form->prepare();
 //echo "<pre>";var_dump($this->form);
 ?>
 
 
 <!--<div class="col-xs-12">-->
+<p id="erro"></p>
 
     <fieldset>
         <legend><?php echo $form->getName() ?></legend>
 
         <?php echo $this->form()->openTag($form); ?>
+
+        <div><?php echo $this->formInput($form->get('idCurso'))?></div>
+
         <div class="row">
             <div class="form-group col-md-5 col-xs-5">
-                <?php echo $this->formLabel($form->get("nome")) ?>
-                <?php echo $this->formInput($form->get("nome")) ?>
+                <?php echo $this->formLabel($form->get("noCurso")) ?>
+                <?php echo $this->formInput($form->get("noCurso")) ?>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-5 col-xs-5">
-                <?php echo $this->formLabel($form->get("sigla")) ?>
-                <?php echo $this->formInput($form->get("sigla")) ?>
+                <?php echo $this->formLabel($form->get("sgCurso")) ?>
+                <?php echo $this->formInput($form->get("sgCurso")) ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-5 col-xs-5">
+                <?php echo $this->formLabel($form->get("chCurso")) ?>
+                <?php echo $this->formInput($form->get("chCurso")) ?>
             </div>
         </div>
 
@@ -45,15 +55,32 @@ $form->prepare();
 <!--</div>-->
 
 <script>
-    
     $(document).ready(function () {
-        $('#btnSalvar').on('click', function () {
+        $('#chCurso').mask("99:99");
 
+        $('#btnSalvar').on('click', function () {
+            $('#erro').html("")
+            if(validaCampos(['input'])){
+//                alert('certo');
+
+            $.ajax({
+                url: '/cadastro/salvarCurso',
+                datatype:'json',
+                type: 'POST',
+                data: $('form').serialize(),
+                success: function (data) {
+                    var retorno = JSON.parse(data);
+                    console.log(retorno);
+                }
+            });
+            }else{
+                voltarTopo();
+                $('#erro').html("Preencha os campos obrigatórios!")
+            }
         });
 
         $('#btnCancelar').on('click', function () {
             window.location.assign('/');
-        })
+        });
     })
-    
 </script>

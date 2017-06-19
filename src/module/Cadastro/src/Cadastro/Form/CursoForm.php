@@ -8,6 +8,7 @@
 
 namespace Cadastro\Form;
 
+use Zend\Form\Element\Hidden;
 use Zend\Form\Element\Text;
 use Zend\Form\Form;
 
@@ -16,24 +17,40 @@ class CursoForm extends Form {
     {
         parent::__construct($name, $options);
 
-        $nome = new Text("nome");
-        $nome->setLabel("Nome: ")
+        $idCurso = new Hidden('idCurso');
+        $idCurso->setAttributes(array(
+            'id' => 'idCurso'
+        ));
+        $this->add($idCurso);
+
+        $noCurso = new Text("noCurso");
+        $noCurso->setLabel("Nome: ")
         ->setAttributes(array(
             'required' => true,
             'maxlength' => '100',
             'id' => 'noCurso',
             'class' => 'form-control'
-        ));
-        $this->add($nome);
+        ))->setLabelAttributes(array('class' => 'control-label'));
+        $this->add($noCurso);
 
-        $sigla = new Text("sigla");
-        $sigla->setLabel("Sigla: ")
+        $sgCurso = new Text("sgCurso");
+        $sgCurso->setLabel("Sigla: ")
         ->setAttributes(array(
            'required' => true,
             'maxlength' => '10',
-            'id' => 'sigla',
+            'id' => 'sgCurso',
             'class' => 'form-control',
-        ));
-        $this->add($sigla);
+        ))->setLabelAttributes(array('class' => 'control-label'));
+        $this->add($sgCurso);
+
+        $chCurso = new Text('chCurso');
+        $chCurso->setLabel("Carga Horária: ")
+        ->setAttributes(array(
+            'required' => true,
+            'id' => 'chCurso',
+            'maxlength' => '5',
+            'class' => 'form-control',
+        ))->setLabelAttributes(array('class' => 'control-label'));
+        $this->add($chCurso);
     }
 }

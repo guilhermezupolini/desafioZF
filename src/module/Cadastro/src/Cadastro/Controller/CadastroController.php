@@ -25,8 +25,15 @@ class CadastroController extends AbstractActionController {
     }
 
     public function salvarCursoAction(){
-        $retorno = array('msg' => "oi");
+        $request = $this->getRequest();
+        $post = $request->getPost()->toArray();
 
-        return json_encode($retorno);
+        if($post){
+            $retorno = array('status' => 'sucesso', 'msg' => "Dados salvos com sucesso");
+        }else{
+            $retorno = array('status' => 'erro', 'msg' => "Erro ao salvar as informações");
+        }
+
+        return $this->getResponse()->setContent(json_encode($retorno));
     }
 }
