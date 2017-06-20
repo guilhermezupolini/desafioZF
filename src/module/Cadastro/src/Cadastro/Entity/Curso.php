@@ -9,6 +9,8 @@
 
 namespace Cadastro\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Curso
  * @ORM\Entity
@@ -20,28 +22,29 @@ class Curso
     /**
      * @var Integer
      * @ORM\Id
-     * @ORM\Column(name="id_curso" type="integer", nullable="false")
+     * @ORM\GeneratedValue("AUTO")
+     * @ORM\Column(name="id_curso", type="integer", nullable=false)
     */
     private $idCurso;
 
     /**
      * @var String
      *
-     * @ORM\Column(name="nm_curso" type="string", nullable="false")
+     * @ORM\Column(name="nm_curso", type="string", nullable=false)
      */
     private $noCurso;
 
     /**
      * @var String
      *
-     * @ORM\Column(name="sg_curso" type="string", nullable="false")
+     * @ORM\Column(name="sg_curso", type="string", nullable=false)
      */
     private $sgCurso;
 
     /**
      * @var Integer
      *
-     * @ORM\Column(name="nu_carga_horario" type="integer", nullable="false")
+     * @ORM\Column(name="nu_carga_horario", type="integer", nullable=false)
      */
     private $chCurso;
 

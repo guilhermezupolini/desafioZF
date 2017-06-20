@@ -7,6 +7,8 @@
  * Time: 12:31
  */
 
+namespace Cadastro\Entity\Repository;
+
 use Doctrine\ORM\EntityRepository;
 
 class CursoRepository extends EntityRepository

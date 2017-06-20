@@ -2,7 +2,9 @@
 return array(
     'modules' => array(
         'Application',
-        'Cadastro'
+        'Cadastro',
+        'DoctrineModule',
+        'DoctrineORMModule',
     ),
 
     'module_listener_options' => array(

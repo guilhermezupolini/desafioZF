@@ -12,5 +12,38 @@
  */
 
 return array(
-    // ...
+//    'db' => array(
+//        'driver'         => 'mysql',
+//        'dsn'            => 'mysql:dbname=desafio-zf;host=localhost:3306',
+//        'driver_options' => array(
+//            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+//        ),
+//    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter'
+            => 'Zend\Db\Adapter\AdapterServiceFactory',
+        ),
+    ),
+//    'doctrine_config' => array(
+//        'driver' => 'pdo_mysql',
+//        'host'     => 'localhost',
+//        'port'     => '3306',
+//        'user' => 'root',
+//        'password' => 'root',
+//        'dbname' => 'desafio-zf'
+//    ),
+
+    'doctrine_config' => array(
+        'driver' => 'pdo_mysql',
+        'user'     => 'root',
+        'password' => 'root',
+        'params' => array(
+            'host'     => 'localhost',
+            'port'     => '3306',
+            'user' => 'root',
+            'password' => 'root',
+            'dbname' => 'desafio-zf'
+        )
+    ),
 );

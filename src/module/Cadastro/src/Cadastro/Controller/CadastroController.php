@@ -9,9 +9,11 @@
 
 namespace Cadastro\Controller;
 
+use Cadastro\Entity\Curso;
 use Cadastro\Form\CursoForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Doctrine\ORM\EntityManager;
 
 class CadastroController extends AbstractActionController {
 
@@ -21,6 +23,9 @@ class CadastroController extends AbstractActionController {
 
         $form = new CursoForm('Curso');
 
+        $cursoService = $this->getServiceLocator()->get("CursoService");
+        $cursoService->teste();
+
         return new ViewModel(array('exemplo' => $texto, 'form' => $form));
     }
 
@@ -29,7 +34,22 @@ class CadastroController extends AbstractActionController {
         $post = $request->getPost()->toArray();
 
         if($post){
-            $retorno = array('status' => 'sucesso', 'msg' => "Dados salvos com sucesso");
+            try{
+                $curso = new Curso();
+                $curso->setNoCurso($post["noCurso"]);
+                $curso->setSgCurso($post["sgCurso"]);
+                $curso->setChCurso($post["chCurso"]);
+
+                $cursoService = $this->getServiceLocator()->get("CursoService");
+//                $cursoService->save($post);
+                $cursoService->salvar($curso);
+                $cursoService->flush();
+
+                $retorno = array('status' => 'sucesso', 'msg' => "Dados salvos com sucesso");
+            }catch (Exception $e){
+                $retorno = array('status' => 'erro', 'msg' => "Erro ao salvar as informações");
+            }
+
         }else{
             $retorno = array('status' => 'erro', 'msg' => "Erro ao salvar as informações");
         }
