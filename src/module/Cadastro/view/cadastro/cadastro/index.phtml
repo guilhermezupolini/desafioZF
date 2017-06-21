@@ -70,7 +70,11 @@ $form = $this->form;
                 data: $('form').serialize(),
                 success: function (data) {
                     var retorno = JSON.parse(data);
-                    console.log(retorno);
+
+                    if(retorno.status == "sucesso"){
+                        console.log(retorno.status);
+                    }
+
                 }
             });
             }else{

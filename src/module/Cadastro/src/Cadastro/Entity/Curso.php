@@ -14,8 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Curso
  * @ORM\Entity
- * @ORM\Table(name="DESAFIO-ZF.TB_CURSO")
- * @ORM\Entity(repositoryClass="Cadastro\Entity\Repository\CadastroRepository")
+ * @ORM\Table(name="tb_curso")
+ * @ORM\Entity(repositoryClass="Cadastro\Entity\Repository\CursoRepository")
 */
 class Curso
 {

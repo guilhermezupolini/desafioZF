@@ -47,5 +47,6 @@ class CursoService
 
     public function salvar($entity){
         $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
     }
 }

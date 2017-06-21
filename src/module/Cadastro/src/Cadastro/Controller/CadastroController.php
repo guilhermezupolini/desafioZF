@@ -43,7 +43,8 @@ class CadastroController extends AbstractActionController {
                 $cursoService = $this->getServiceLocator()->get("CursoService");
 //                $cursoService->save($post);
                 $cursoService->salvar($curso);
-                $cursoService->flush();
+//                $cursoService->flush();
+
 
                 $retorno = array('status' => 'sucesso', 'msg' => "Dados salvos com sucesso");
             }catch (Exception $e){

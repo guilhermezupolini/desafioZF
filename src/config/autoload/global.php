@@ -38,7 +38,7 @@ return array(
         'driver'   => 'pdo_mysql',
         'user'     => 'root',
         'password' => 'root',
-        'host'     => '127.0.0.1',
+        'host'     => '10.0.75.1',
         'port'     => '3306',
 //        'user' => 'root',
 //        'password' => 'root',
