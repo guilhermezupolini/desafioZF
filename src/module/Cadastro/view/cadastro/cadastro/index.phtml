@@ -14,7 +14,9 @@ $form = $this->form;
 
 
 <!--<div class="col-xs-12">-->
-<p id="erro"></p>
+<div  class="alert" id="painelMsg" style="display: none;">
+</div>
+
 
     <fieldset>
         <legend><?php echo $form->getName() ?></legend>
@@ -56,10 +58,10 @@ $form = $this->form;
 
 <script>
     $(document).ready(function () {
-        $('#chCurso').mask("99:99");
+        $('#chCurso').mask("9999");
 
         $('#btnSalvar').on('click', function () {
-            $('#erro').html("")
+            $('#painelMsg').html("");
             if(validaCampos(['input'])){
 //                alert('certo');
 
@@ -72,19 +74,21 @@ $form = $this->form;
                     var retorno = JSON.parse(data);
 
                     if(retorno.status == "sucesso"){
-                        console.log(retorno.status);
+                        voltarTopo();
+                        msgAlerta(retorno.status, retorno.msg, '#painelMsg');
+                        limparCampos(['input']);
                     }
 
                 }
             });
             }else{
                 voltarTopo();
-                $('#erro').html("Preencha os campos obrigatórios!")
+                var msg = "Preencha os campos obrigatórios!";
+                msgAlerta("erro", msg, '#painelMsg');
             }
         });
-
         $('#btnCancelar').on('click', function () {
-            window.location.assign('/');
+            window.location.assign('/consultar');
         });
     })
 </script>

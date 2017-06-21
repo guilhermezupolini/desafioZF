@@ -23,8 +23,8 @@ class CadastroController extends AbstractActionController {
 
         $form = new CursoForm('Curso');
 
-        $cursoService = $this->getServiceLocator()->get("CursoService");
-        $cursoService->teste();
+//        $cursoService = $this->getServiceLocator()->get("CursoService");
+//        $cursoService->teste();
 
         return new ViewModel(array('exemplo' => $texto, 'form' => $form));
     }
@@ -54,6 +54,35 @@ class CadastroController extends AbstractActionController {
         }else{
             $retorno = array('status' => 'erro', 'msg' => "Erro ao salvar as informações");
         }
+
+        return $this->getResponse()->setContent(json_encode($retorno));
+    }
+
+    public function consultarAction(){
+
+        $form = new CursoForm("ConsultaCurso");
+
+        return new ViewModel(array('form' => $form));
+    }
+
+    public function consultarCursoAction(){
+        $cursoService = $this->getServiceLocator()->get("CursoService");
+        $dados =  $cursoService->findAll();
+
+        foreach ($dados as $dado){
+          $curso["idCurso"] = $dado->getIdCurso();
+          $curso["noCurso"] = $dado->getNoCurso();
+          $curso["sgCurso"] = $dado->getSgCurso();
+          $curso["chCurso"] = $dado->getChCurso();
+
+          $cursos[] = $curso;
+        }
+
+//        var_dump($cursos);
+//
+//        exit;
+
+        $retorno = array("msg" => "cheguei", "dados" => $cursos);
 
         return $this->getResponse()->setContent(json_encode($retorno));
     }

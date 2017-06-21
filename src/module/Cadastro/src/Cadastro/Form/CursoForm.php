@@ -48,7 +48,8 @@ class CursoForm extends Form {
         ->setAttributes(array(
             'required' => true,
             'id' => 'chCurso',
-            'maxlength' => '5',
+            'maxlength' => '4',
+            'data-mask' => '00:00',
             'class' => 'form-control',
         ))->setLabelAttributes(array('class' => 'control-label'));
         $this->add($chCurso);

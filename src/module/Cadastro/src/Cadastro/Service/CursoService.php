@@ -45,6 +45,10 @@ class CursoService
         return $this->getRepository()->findAll();
     }
 
+    public function findAll(){
+        return $this->getRepository()->findAll();
+    }
+
     public function salvar($entity){
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
